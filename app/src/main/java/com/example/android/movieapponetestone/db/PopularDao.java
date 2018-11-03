@@ -4,6 +4,7 @@ import com.example.android.movieapponetestone.model.popular.Popular;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -13,7 +14,7 @@ import androidx.room.Update;
 @Dao
 public interface PopularDao {
     @Query("SELECT * FROM popular")
-    List<Popular> getAll();
+    LiveData<List<Popular>> getAll();
 
     @Insert
     void insert(Popular employee);
@@ -23,4 +24,7 @@ public interface PopularDao {
 
     @Delete
     void delete(Popular employee);
+
+    @Insert
+    void fab(Popular employee);
 }

@@ -17,6 +17,7 @@ import com.example.android.movieapponetestone.db.PopularDao;
 import com.example.android.movieapponetestone.model.movies.Review;
 import com.example.android.movieapponetestone.model.movies.ReviewResult;
 import com.example.android.movieapponetestone.model.popular.Popular;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,8 +38,11 @@ public class DetailActivity extends AppCompatActivity {
     private TextView synopsis;
     private ImageView posterImage;
     private TextView bla;
-    private Button insert;
-    private Button delete;
+
+//    private Button insert;
+//    private Button delete;
+
+    private FloatingActionButton fab;
 
     private int pos;
     public static final int KEY_K = 297761;
@@ -53,11 +57,17 @@ public class DetailActivity extends AppCompatActivity {
 
         getData();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     private void init() {
-        insert = findViewById(R.id.ins_btn);
-        delete = findViewById(R.id.del_btn);
+
+//        insert = findViewById(R.id.ins_btn);
+//        delete = findViewById(R.id.del_btn);
+
+
+        fab = findViewById(R.id.fab);
+
         title = findViewById(R.id.tv_title);
         userRating = findViewById(R.id.user_rating);
         releaseDate = findViewById(R.id.release_date);
@@ -94,21 +104,30 @@ public class DetailActivity extends AppCompatActivity {
         AppDatabase db = App.getInstance().getDatabase();
         final PopularDao dao = db.popularDao();
 
-        insert.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                dao.insert(data);
-                Toast.makeText(DetailActivity.this, "Fav was added", Toast.LENGTH_SHORT).show();
+            public void onClick(View view) {
+                dao.fab(data);
+                Toast.makeText(DetailActivity.this, "Fav was added", Toast.LENGTH_LONG).show();
             }
         });
 
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dao.delete(data);
-                Toast.makeText(DetailActivity.this, "Fav was deleted", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        insert.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dao.insert(data);
+//                Toast.makeText(DetailActivity.this, "Fav was added", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        delete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dao.delete(data);
+//                Toast.makeText(DetailActivity.this, "Fav was deleted", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     private void getRev() {
